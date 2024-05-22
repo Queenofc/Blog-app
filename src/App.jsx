@@ -6,13 +6,19 @@ import {
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 import Single from "./pages/Single";
 import Write from "./pages/Write";
 
 const router = createBrowserRouter([
 {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <div>
+      <Navbar/>
+      <Home/>
+      <Footer/>
+    </div>,
 },
 {
     path: "/Register",
