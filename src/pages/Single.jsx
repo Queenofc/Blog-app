@@ -5,3 +5,5 @@ export const Single = () => {
     <div>Single</div>
   )
 }
+
+export default Single 
