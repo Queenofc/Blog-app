@@ -1,8 +1,8 @@
 import {
-    createBrowserRouter,
-    Outlet,
-    RouterProvider,
-  } from "react-router-dom";
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -13,50 +13,50 @@ import Single from "./pages/Single";
 import Write from "./pages/Write";
 import "./style.scss"
 
-const Layout = () =>{
-  return(
+const Layout = () => {
+  return (
     <>
-     <Navbar />
-     <Outlet />
-     <Footer />
+      <Navbar />
+      <Outlet />
+      <Footer />
     </>
   );
 };
 
 const router = createBrowserRouter([
-{
+  {
     path: "/",
-    element: <Layout/>,
-    children:[
+    element: <Layout />,
+    children: [
       {
-        path:"/",
-        element:<Home/>
+        path: "/",
+        element: <Home />
       },
       {
-        path:"/post/:id",
-        element:<Single/>
+        path: "/post/:id",
+        element: <Single />
       },
       {
-        path:"/Write",
-        element:<Write/>
+        path: "/Write",
+        element: <Write />
       },
     ]
-},
-{
+  },
+  {
     path: "/Register",
-    element: <Register/>,
-},  
-{
+    element: <Register />,
+  },
+  {
     path: "/Login",
-    element: <Login/>,
-},  
+    element: <Login />,
+  },
 ]);
 
 function App() {
   return (
     <div className="app">
       <div className="container">
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <img src={Logo} alt="" />
       <span>Made with <b>React.js</b> </span>
-    </footer>      
+    </footer>
   )
 }
 
