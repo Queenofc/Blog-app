@@ -7,6 +7,7 @@ import axios from 'axios';
 import moment from "moment";
 import { AuthContext } from '../context/authContext';
 
+
 export const Single = () => {
   const [post,setPost]=useState({})
 
@@ -31,7 +32,7 @@ export const Single = () => {
 
 const handleDelete =async () =>{
   try{
-    await axios.delete(`http://localhost:8800/api/posts/${postId}`)
+    await axios.delete(`http://localhost:8800/api/posts/${postId}`,{withCredentials:true})
     navigate("/")
   }catch(err){
     console.log(err)
