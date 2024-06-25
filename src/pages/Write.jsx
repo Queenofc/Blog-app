@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import axios from "axios";
 
 export const Write = () => {
   const [value, setValue] = useState("");
@@ -8,14 +9,30 @@ export const Write = () => {
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState("");
 
-  console.log(value)
+  const quillRef = useRef(null);
+
+const upload = async ()=>{
+  try{
+    const formData = new FormData();
+    formData.append("file",file)
+    const res = await axios.post("http://localhost:8800/api/uploads" ,formData)
+    console.log(res.data)
+  }catch(err){
+    console.log(err)
+  }
+} 
+
+const handleClick = async e =>{
+  e.preventDefault()
+  upload()
+}
 
   return (
     <div className="add">
       <div className="content">
         <input type="text" placeholder='Title' onChange={e=>setTitle(e.target.value)}/>
         <div className="editorContainer">
-          <ReactQuill className="editor" theme="snow" value={value} onChange={setValue} />
+          <ReactQuill className="editor" theme="snow" value={value} onChange={setValue} ref={quillRef}/>
         </div>
       </div>
       <div className="menu">
@@ -31,7 +48,7 @@ export const Write = () => {
           <label className="file" htmlFor="file">Upload Image</label>
           <div className="buttons">
             <button>Save as a draft</button>
-            <button>Publish</button>
+            <button onClick={handleClick}>Publish</button>
           </div>
         </div>
         <div className="item">
