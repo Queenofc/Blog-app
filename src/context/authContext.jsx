@@ -8,7 +8,7 @@ export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
     const login = async(inputs) => {
-        const res = await axios.post("http://localhost:8800/api/auth/login", inputs,{withCredentials:true});
+        const res = await axios.post("http://localhost:8800/api/auth/login",inputs,{withCredentials:true});
         // withCredentials is added so that cookies are sent to the backend and it appears in the storage 
         setCurrentUser(res.data);
     }
@@ -17,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
         const res = await axios.post("http://localhost:8800/api/auth/logout");
         setCurrentUser(null);
     }
-
+    //effect hook that stores user
     useEffect(() => {
         localStorage.setItem("user", JSON.stringify(currentUser));
     }, [currentUser]);

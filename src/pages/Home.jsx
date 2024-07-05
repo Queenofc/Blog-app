@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import axios from "axios"
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
+import { Carousel } from 'react-responsive-carousel';
+
 
 const Home = () => {
 const [posts,setPosts]=useState([])
@@ -19,47 +22,83 @@ useEffect(()=>{
   fetchData();
 },[cat])
 
-// const posts = [
-  //   {
-  //     id: 1,
-  //     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-  //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
-  //     img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-  //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
-  //     img: "https://images.pexels.com/photos/6489663/pexels-photo-6489663.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-  //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
-  //     img: "https://images.pexels.com/photos/4230630/pexels-photo-4230630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-  //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
-  //     img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  //   },
-  // ];
+  // Function to truncate text and add ellipses
+  const truncateText = (text, maxLength) => {
+    if (text.length <= maxLength) {
+      return text;
+    }
+    const truncatedText = text.substr(0, maxLength);
+    return truncatedText.substr(0, Math.min(truncatedText.length, truncatedText.lastIndexOf(" "))) + ' ...';
+  }
+
+
+  // Function to get one random post from each category
+  const getOnePostPerCategory = (posts) => {
+    const categories = {};
+    const selectedPosts = [];
+
+    // Group posts by category
+    posts.forEach((post) => {
+      if (!categories[post.category]) {
+        categories[post.category] = [];
+      }
+      categories[post.category].push(post);
+    });
+
+    // Select one random post from each category
+    Object.keys(categories).forEach((category) => {
+      const randomIndex = Math.floor(Math.random() * categories[category].length);
+      selectedPosts.push(categories[category][randomIndex]);
+    });
+
+    return selectedPosts;
+  };
+
+  // Get one random post from each category
+  const randomPosts = getOnePostPerCategory(posts);
+
+  const getText = (html) =>{
+    const doc = new DOMParser().parseFromString(html, "text/html")
+    return doc.body.textContent
+  }
 
   return (
     <div className='home'>
+      <div className='carousel-container'>
+        <Carousel
+          showThumbs={false}
+          autoPlay={true}
+          interval={3000}
+          infiniteLoop={true}
+          transitionTime={1600} // Set transition time to 1000ms for smooth transition
+          emulateTouch={true}
+          showStatus={false}
+          dynamicHeight={true}
+          useKeyboardArrows={true}
+          showArrows={true} // Hide the navigation arrows
+        >
+          {randomPosts.map((post) => (
+            <div key={post.id} className="carousel-item">
+              <img src={`../upload/${post.img}`} alt="" className="d-block w-100" />
+              <div className="legend">
+                <h1>{post.title}</h1>
+              </div>
+            </div>
+          ))}
+        </Carousel>
+      </div>
       <div className="posts">
         {posts.map((post) => (
-          <div className="post" key={post.id}>
+          <div className="post" key={post.id} >
             <div className="img">
-              <img src={post.img} alt="" />
+              <img src={`../upload/${post.img}`} alt=""  />
             </div>
             <div className="content">
+              <h1>{post.title}</h1>
+              <p>{truncateText(getText(post.desc), 100)}</p>
               <Link className="link" to={`/post/${post.id}`}>
-                <h1>{post.title}</h1>
+                <button>Read More</button>
               </Link>
-              <p>{post.desc}</p>
-              <button>Read More</button>
             </div>
           </div>
         ))}

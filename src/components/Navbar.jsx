@@ -18,33 +18,33 @@ const Navbar = () => {
         </div>
         <div className="links">
           <Link className="link" to="?cat=art">
-            <h5>ART</h5>
+            <h5>Art</h5>
           </Link>
           <Link className="link" to="?cat=science">
-            <h5>SCIENCE</h5>
+            <h5>Science</h5>
           </Link>
           <Link className="link" to="?cat=technology">
-            <h5>TECHNOLOGY</h5>
+            <h5>Technology</h5>
           </Link>
           <Link className="link" to="?cat=cinema">
-            <h5>CINEMA</h5>
+            <h5>Cinema</h5>
           </Link>
           <Link className="link" to="?cat=design">
-            <h5>DESIGN</h5>
+            <h5>Design</h5>
           </Link>
           <Link className="link" to="?cat=FOOD">
-            <h5>FOOD</h5>
+            <h5>Food</h5>
           </Link>
-          <span>{currentUser?.username}</span>
+          {currentUser && <span className="username">Hi,  {currentUser.username}</span>}
           {currentUser?(
-            <span onClick={logout}>Logout</span>
+            <span className="logout" onClick={logout}>Logout</span>
           ):(
-            <Link className="link" to="/login">
+            <Link className="login" to="/login">
               Login
             </Link>
           )}
           <span className="write">
-            <Link className="link" to="/write">Write</Link>
+            <Link className="link" to="/write">Create+</Link>
           </span>
         </div>
       </div>

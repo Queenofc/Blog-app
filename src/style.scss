@@ -55,6 +55,7 @@ $LightGreen :#b9e7e7;
         //Navbar 
         .navbar {
             .container {
+                width: 100%;
                 padding: 10px 0px;
                 display: flex;
                 align-items: center;
@@ -68,28 +69,92 @@ $LightGreen :#b9e7e7;
                     font-family: sans-serif;
                     display: flex;
                     align-items: center;
-                    gap: 10px;
+                    gap: 12px;
                     h5 {
-                        font-size: 16px;
-                        font-weight: 300;
-                    }
-                    span {
-                        cursor: pointer;
-                    }
-                    .write {
-                        background-color: $LightGreen;
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
                         display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        justify-content: space-evenly;
+                        font-size: 18px;
                         font-weight: 300;
-                        border: 1px solid teal;
+                        position: relative;
+                        cursor: pointer;
+                        color: black;
+                        /* Default text color */
+                        transition: color 0.3s;
+                        /* Smooth transition for text color change */
                         &:hover {
                             color: teal;
-                            background-color: white;
+                            /* Change text color on hover */
+                        }
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            bottom: -3px;
+                            /* Adjust position to align with text */
+                            left: 0;
+                            width: 100%;
+                            height: 2px;
+                            /* Thickness of the underline */
+                            background-color: #0071e2;
+                            /* Underline color */
+                            transform: scaleX(0);
+                            /* Initially hide the underline */
+                            transform-origin: bottom left;
+                            /* Align underline with text */
+                            transition: transform 0.3s ease-in-out;
+                            /* Smooth animation for underline */
+                        }
+                        &:hover:before {
+                            transform: scaleX(1);
+                            /* Show underline on hover */
+                        }
+                    }
+                    span {
+                        display: flex;
+                        justify-content: space-evenly;
+                        &.username {
+                            margin-left: 45px;
+                            font-size: 18px;
+                            font-weight: 550;
+                            color: #0071e2;
+                        }
+                        &.logout {
+                            cursor: pointer;
+                            display: inline-block;
+                            padding: 10px 20px;
+                            background-color: #57c4ff31;
+                            color: #0071e2;
+                            text-align: center;
+                            text-decoration: none;
+                            border-radius: 25px;
                             border: 1px solid teal;
+                            border: none;
+                            transition: background-color 0.3s ease;
+                        }
+                    }
+                    .login {
+                        cursor: pointer;
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #57c4ff31;
+                        color: #0071e2;
+                        text-align: center;
+                        text-decoration: none;
+                        border-radius: 25px;
+                        border: 1px solid teal;
+                        border: none;
+                        transition: background-color 0.3s ease;
+                    }
+                    .write {
+                        background-color: #48cae4;
+                        padding: 10px 20px;
+                        border-radius: 25px;
+                        border: none;
+                        transition: all ease-in-out 0.2s;
+                        font-size: 16px;
+                        color: white;
+                        &:hover {
+                            color: #0071e2;
+                            background-color: #57c4ff31;
                         }
                     }
                 }
@@ -97,8 +162,9 @@ $LightGreen :#b9e7e7;
         }
         //Footer
         footer {
+            width: 100%;
             margin-top: 100px;
-            padding: 7px;
+            padding: 10px;
             background-color: $LightGreen;
             display: flex;
             align-items: center;
@@ -110,6 +176,19 @@ $LightGreen :#b9e7e7;
         }
         // Home
         .home {
+            .carousel-container {
+                width: 90%; // Set the width as per your requirement
+                margin: 0 auto; // Center the carousel
+                .carousel .slide img {
+                    border-radius: 10px;
+                    height: 400px; // Set the height as per your requirement
+                    object-fit: cover; // Make sure the image covers the entire slide
+                    transition: transform 0.5s ease-in-out; // Smooth transition for image changes
+                }
+                .carousel .slide {
+                    transition: opacity 0.5s ease-in-out; // Smooth transition for slide changes
+                }
+            }
             .posts {
                 margin-top: 50px;
                 display: flex;
@@ -159,6 +238,8 @@ $LightGreen :#b9e7e7;
                             background-color: white;
                             border: 1px solid teal;
                             color: teal;
+                            transition: background-color 0.3s ease;
+                            border-radius: 25px;
                             &:hover {
                                 border: 1px solid white;
                                 background-color: $LightGreen;
@@ -192,7 +273,8 @@ $LightGreen :#b9e7e7;
                         display: flex;
                         flex-direction: column;
                         span {
-                            font-weight: bold;
+                            font-weight: 650;
+                            font-size: large;
                         }
                         p {
                             margin: 0;
@@ -207,10 +289,11 @@ $LightGreen :#b9e7e7;
                 }
                 .edit {
                     display: flex;
-                    gap: 7px;
+                    gap: 9px;
+                    margin-left: 20px;
                     img {
-                        width: 30px;
-                        height: 30px;
+                        width: 35px;
+                        height: 35px;
                         cursor: pointer;
                     }
                 }
@@ -253,6 +336,8 @@ $LightGreen :#b9e7e7;
                         background-color: white;
                         border: 1px solid teal;
                         color: teal;
+                        border-radius: 25px;
+                        transition: background-color 0.3s ease;
                         &:hover {
                             border: 1px solid white;
                             background-color: $LightGreen;
@@ -283,6 +368,11 @@ $LightGreen :#b9e7e7;
                     .editor {
                         height: 100%;
                         border: none;
+                    }
+                    /* Added styles for React Quill editor to handle text wrapping and prevent overflow */
+                    .ql-editor {
+                        word-break: break-word;
+                        white-space: pre-wrap;
                     }
                 }
             }
@@ -318,14 +408,16 @@ $LightGreen :#b9e7e7;
                             color: teal;
                             background-color: white;
                             border: 1px solid teal;
-                            padding: 5px 5px;
+                            padding: 6px 7px;
+                            border-radius: 25px;
                         }
                          :last-child {
                             cursor: pointer;
                             color: white;
                             background-color: teal;
                             border: 1px solid teal;
-                            padding: 5px 5px;
+                            padding: 6px 8px;
+                            border-radius: 25px;
                         }
                     }
                     .cat {
