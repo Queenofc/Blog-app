@@ -71,7 +71,7 @@ const getText = (html) =>{
           )}
         </div>
         <h1>{post.title}</h1>
-        {getText(post.desc)}
+        <div className="content" dangerouslySetInnerHTML={{ __html: post.desc }}></div>
       </div>
       <Menu cat={post.cat}/>
     </div>

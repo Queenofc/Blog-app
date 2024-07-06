@@ -39,7 +39,7 @@ const handleSubmit = async e =>{
         <input required type="password" placeholder='password' name='password' onChange={handleChange}/>
         <button onClick={handleSubmit}>Register</button>
         {err && <p>{err}</p>}
-        <span> Already have an account?<Link to="/Login">  Login </Link>  </span>
+        <span> Already  have  an  account ?<Link to="/Login">  Login </Link>  </span>
       </form>
     </div>
   )

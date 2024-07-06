@@ -31,32 +31,6 @@ useEffect(()=>{
     return truncatedText.substr(0, Math.min(truncatedText.length, truncatedText.lastIndexOf(" "))) + ' ...';
   }
 
-
-  // Function to get one random post from each category
-  const getOnePostPerCategory = (posts) => {
-    const categories = {};
-    const selectedPosts = [];
-
-    // Group posts by category
-    posts.forEach((post) => {
-      if (!categories[post.category]) {
-        categories[post.category] = [];
-      }
-      categories[post.category].push(post);
-    });
-
-    // Select one random post from each category
-    Object.keys(categories).forEach((category) => {
-      const randomIndex = Math.floor(Math.random() * categories[category].length);
-      selectedPosts.push(categories[category][randomIndex]);
-    });
-
-    return selectedPosts;
-  };
-
-  // Get one random post from each category
-  const randomPosts = getOnePostPerCategory(posts);
-
   const getText = (html) =>{
     const doc = new DOMParser().parseFromString(html, "text/html")
     return doc.body.textContent
@@ -68,7 +42,7 @@ useEffect(()=>{
         <Carousel
           showThumbs={false}
           autoPlay={true}
-          interval={3000}
+          interval={5000}
           infiniteLoop={true}
           transitionTime={1600} // Set transition time to 1000ms for smooth transition
           emulateTouch={true}
@@ -77,7 +51,7 @@ useEffect(()=>{
           useKeyboardArrows={true}
           showArrows={true} // Hide the navigation arrows
         >
-          {randomPosts.map((post) => (
+          {posts.map((post) => (
             <div key={post.id} className="carousel-item">
               <img src={`../upload/${post.img}`} alt="" className="d-block w-100" />
               <div className="legend">
