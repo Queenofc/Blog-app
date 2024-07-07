@@ -4,8 +4,6 @@ import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
 import { useLocation, useNavigate } from 'react-router';
 import moment from 'moment';
-import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
 
 export const Write = () => {
 

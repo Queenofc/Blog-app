@@ -186,17 +186,41 @@ $LightGreen :#b9e7e7;
         // Home
         .home {
             .carousel-container {
+                opacity: 1;
                 width: 90%; // Set the width as per your requirement
                 margin: 0 auto; // Center the carousel
-                .carousel .slide img {
-                    border-radius: 10px;
-                    height: 400px; // Set the height as per your requirement
-                    object-fit: cover; // Make sure the image covers the entire slide
-                    transition: transform 0.5s ease-in-out; // Smooth transition for image changes
-                }
-                .carousel .slide {
-                    transition: opacity 0.5s ease-in-out; // Smooth transition for slide changes
-                }
+            }
+            .carousel .slide img {
+                border-radius: 10px;
+                height: 400px; // Set the height as per your requirement
+                object-fit: cover; // Make sure the image covers the entire slide
+                transition: transform 0.5s ease-in-out; // Smooth transition for image changes
+            }
+            .carousel .legend {
+                position: absolute;
+                bottom: 40px;
+                /* Adjust position as needed */
+                left: 50%;
+                width: 90%;
+                border-radius: 10px;
+                padding: 10px;
+                font-size: 14px;
+                text-align: center;
+                opacity: 1;
+                /* Ensure full opacity */
+                background-color: black;
+                /* Default background color */
+                color: white;
+                /* Default text color */
+            }
+            .carousel .legend h1 {
+                margin: 0;
+            }
+            .carousel .legend:hover {
+                /* No additional hover styles needed */
+            }
+            .carousel .legend:hover h1 {
+                /* No additional hover styles needed */
             }
             .posts {
                 margin-top: 50px;
@@ -212,26 +236,17 @@ $LightGreen :#b9e7e7;
                     .img {
                         flex: 3;
                         position: relative;
+                        /* Limit the maximum height of the container */
                         img {
                             width: 100%;
+                            border-radius: 5px;
                             max-height: 400px;
                             /* Allow the image to adjust its height based on its aspect ratio */
                             display: block;
                             object-fit: cover;
                             /* Ensure the image covers the entire container */
                             /* Ensures proper rendering */
-                        }
-                        &::after {
-                            content: "";
-                            width: 100%;
-                            height: 100%;
-                            position: absolute;
-                            background-color: $LightGreen;
-                            position: absolute;
-                            top: 20px;
-                            left: -20px;
-                            z-index: -1;
-                            object-fit: cover;
+                            box-shadow: 15px 15px 2px$LightGreen;
                         }
                     }
                     .content {
@@ -324,6 +339,7 @@ $LightGreen :#b9e7e7;
                 margin: 0;
             }
             p {
+                margin: 0;
                 text-align: justify;
                 line-height: 30px;
             }
@@ -382,7 +398,7 @@ $LightGreen :#b9e7e7;
                     border: 1px solid lightgray;
                 }
                 .editorContainer {
-                    height: 300px;
+                    height: 400px;
                     overflow: scroll;
                     border: 1px solid lightgray;
                     .editor {
