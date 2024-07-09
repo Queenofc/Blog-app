@@ -1,4 +1,4 @@
-import React, { useState,useRef } from 'react'
+import React, { useState,useRef,useEffect } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
@@ -12,12 +12,19 @@ export const Write = () => {
   const [value, setValue] = useState(state?.desc || "");
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
-
+  const [imgUrl, setImgUrl] = useState(state?.img || ''); // Initialize imgUrl state
   
   const navigate = useNavigate()
   const quillRef = useRef(null);
 
+  useEffect(() => {
+    if (state?.img) {
+      setImgUrl(state.img);
+    }
+  }, [state]);
+
 const upload = async ()=>{
+  if (!file) return imgUrl; // If no new file is selected, return existing imgUrl
   try{
     const formData = new FormData();
     formData.append("file",file)
@@ -58,13 +65,13 @@ const handleClick = async e =>{
             title,
             desc: value,
             cat,
-            img: file ? imgUrl : "",
+            img: imgUrl || '',
           },{withCredentials:true})
         : await axios.post('http://localhost:8800/api/posts/', {
             title,
             desc: value,
             cat,
-            img: file ? imgUrl : "",
+            img:  imgUrl ||'',
             date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
           },{withCredentials:true})
           navigate("/")

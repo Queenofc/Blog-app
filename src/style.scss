@@ -4,6 +4,10 @@ $LightGreen :#b9e7e7;
     justify-content: center;
     .container {
         width: 1024px;
+        margin: 0;
+        /* Reset default margin */
+        padding: 0;
+        /* Reset default padding */
         .link {
             text-decoration: none;
             color: inherit;
@@ -80,7 +84,7 @@ $LightGreen :#b9e7e7;
                         display: flex;
                         justify-content: space-evenly;
                         font-size: 18px;
-                        font-weight: 400;
+                        font-weight: 450;
                         position: relative;
                         cursor: pointer;
                         color: black;
@@ -88,6 +92,7 @@ $LightGreen :#b9e7e7;
                         transition: color 0.3s;
                         /* Smooth transition for text color change */
                         &:hover {
+                            font-weight: 450;
                             color: teal;
                             /* Change text color on hover */
                         }
@@ -236,7 +241,6 @@ $LightGreen :#b9e7e7;
                     .img {
                         flex: 3;
                         position: relative;
-                        /* Limit the maximum height of the container */
                         img {
                             width: 100%;
                             border-radius: 5px;
