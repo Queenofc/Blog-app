@@ -21,7 +21,7 @@ $LightGreen :#b9e7e7;
             align-items: center;
             justify-content: center;
             height: 725px;
-            background: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("../src/img/bg.png");
+            background: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("../src/img/bg1.png");
             background-size: cover;
             h1 {
                 margin: 0;
@@ -191,7 +191,7 @@ $LightGreen :#b9e7e7;
             width: 100%;
             margin-top: 100px;
             padding: 10px;
-            background-color: $LightGreen;
+            background-color: #7bcbdd;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -263,7 +263,7 @@ $LightGreen :#b9e7e7;
                             object-fit: cover;
                             /* Ensure the image covers the entire container */
                             /* Ensures proper rendering */
-                            box-shadow: 15px 15px 2px$LightGreen;
+                            box-shadow: 15px 15px 2px#7bcbdd;
                         }
                     }
                     .content {
