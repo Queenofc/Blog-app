@@ -1,5 +1,5 @@
 import React,{useContext} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../img/logo.png'
 import { AuthContext} from '../context/authContext'
 
@@ -7,6 +7,15 @@ import { AuthContext} from '../context/authContext'
 const Navbar = () => {
 
   const { currentUser,logout }=useContext(AuthContext);
+  const navigate = useNavigate(); // Use navigate to redirect
+
+
+  const handleCreateClick = (e) => {
+    if (!currentUser) {
+      e.preventDefault(); // Prevent the default link behavior
+      navigate('/error', { state: { message: 'You need to be logged in to create a post .' } }); // Redirect to error page
+    }
+  };
 
   return (
     <div className='navbar'>
@@ -44,7 +53,7 @@ const Navbar = () => {
             </Link>
           )}
           <span className="write">
-            <Link className="link" to="/write">Create+</Link>
+            <Link className="link" to="/write" onClick={handleCreateClick} >Create+</Link>
           </span>
         </div>
       </div>

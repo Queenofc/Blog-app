@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar";
 import Single from "./pages/Single";
 import Write from "./pages/Write";
 import "./style.scss"
+import ErrorPage from "./pages/Errorpage";
 
 const Layout = () => {
   return (
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/Login",
     element: <Login />,
+  },
+  {
+    path: "/error",
+    element: <ErrorPage />,
   },
 ]);
 

@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 import { Carousel } from 'react-responsive-carousel';
+import { AuthContext } from '../context/authContext';
 
 
 const Home = () => {
 const [posts,setPosts]=useState([])
 
 const cat =useLocation().search
+const { currentUser } = useContext(AuthContext);
+const navigate = useNavigate();
+
 
 useEffect(()=>{
   const fetchData =async ()=>{
@@ -35,6 +39,16 @@ useEffect(()=>{
     const doc = new DOMParser().parseFromString(html, "text/html")
     return doc.body.textContent
   }
+  
+  const handleReadMoreClick = (e, postId) => {
+    e.preventDefault(); // Prevent default link behavior
+
+    if (currentUser) {
+      navigate(`/post/${postId}`); // Navigate to the post
+    } else {
+      navigate('/error', { state: { message: 'Access denied. Please log in to continue.' } }); // Redirect to error page
+    }
+  };
 
   return (
     <div className='home'>
@@ -71,7 +85,7 @@ useEffect(()=>{
               <h1>{post.title}</h1>
               <p>{truncateText(getText(post.desc), 100)}</p>
               <Link className="link" to={`/post/${post.id}`}>
-                <button>Read More</button>
+                <button className="link" onClick={(e) => handleReadMoreClick(e, post.id)}>Read More</button>
               </Link>
             </div>
           </div>
