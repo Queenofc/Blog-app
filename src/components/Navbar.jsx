@@ -15,6 +15,9 @@ const Navbar = () => {
     if (!currentUser) {
       navigate('/error'); // Redirect to error page
     }
+    else{
+      navigate('/write')
+    }
   };
 
   return (
