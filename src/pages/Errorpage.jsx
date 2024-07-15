@@ -9,8 +9,8 @@ const ErrorPage = () => {
 
   return (
     <div className="error-page">
-      <p><h1>{message}</h1></p>
-      <Link to="/"><h3>Go back to Home</h3></Link> {/* Link to navigate to home */}
+      <img src="../src/img/er.png" alt=""/>
+      <Link className="button" to="/">Go Back</Link> {/* Link to navigate to home */}
     </div>
   );
 };

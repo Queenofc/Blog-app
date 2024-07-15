@@ -11,9 +11,9 @@ const Navbar = () => {
 
 
   const handleCreateClick = (e) => {
+    e.preventDefault(); // Prevent the default link behavior
     if (!currentUser) {
-      e.preventDefault(); // Prevent the default link behavior
-      navigate('/error', { state: { message: 'You need to be logged in to create a post .' } }); // Redirect to error page
+      navigate('/error'); // Redirect to error page
     }
   };
 

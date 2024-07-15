@@ -46,7 +46,7 @@ useEffect(()=>{
     if (currentUser) {
       navigate(`/post/${postId}`); // Navigate to the post
     } else {
-      navigate('/error', { state: { message: 'Access denied. Please log in to continue.' } }); // Redirect to error page
+      navigate('/error'); // Redirect to error page
     }
   };
 
